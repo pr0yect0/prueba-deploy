@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    {% extends 'navbar.html' %}
+    {% block content %}
+    
+    <ul class="m-usuario">
+        <li class="li-back" aria-current="page">
+            <a class="text-white" href="/usuarios">Back</a>
+        </li>
+    </ul>
+    
+    <div class="caja-cuadrado">
+        {% for citas in citas %}
+        <p class="p-perfil">{{citas.user.first_name.capitalize}} {{citas.user.last_name.capitalize}}'s Quotes</p>
+        {% endfor %}
+        
+        {% for citas in citas %}
+        <div class="cuadrado">
+            <p> {{citas.author}} : {{citas.quote}}</p>
+        </div>
+    {% endfor %}
+    </div>
+    {% endblock %}
+</body>
+</html>

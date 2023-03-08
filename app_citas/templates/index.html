@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    
+    <div class="reg-form">
+        <form action="" method="POST" class="form-reg">
+
+            {% csrf_token %}
+            
+                <p class="titulo-register">Register</p>
+            <ul class="menu">
+                <li class="menu-lista"><label class="label-reg" for="">First Name</label>
+                    <p class="p-reg">{{register_form.first_name}}</p></li>
+
+                <li class="menu-lista"><label class="label-reg" for="">Last Name</label>
+                    <p class="p-reg">{{register_form.last_name}}</p></li>
+                    
+                <li class="menu-lista">
+                    <label class="label-reg" for="">Email</label>
+                    <p class="p-reg">{{register_form.username}} </p>
+                </li>
+                <li class="menu-lista">
+                    <label class="label-reg" for="">Password </label>
+                    <p class="p-reg"> {{register_form.password1}}</p>
+                </li>
+                <li class="menu-lista">
+                    <label class="label-reg" for="">Confirm PW </label>
+                    <p class="p-reg">{{register_form.password2}}</p> 
+                </li>
+                <li class="menu-lista"> 
+                    <p class="p-reg"><button value="register" name="register">Register</button></p>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <br><br>
+    <form action="" method="post" class="form-login">
+        {% csrf_token %}
+        <p class="title-log">Login</p>
+        <ul class="menu-login">
+            
+            <li class="lista-login">
+                <label class="label-log" for="">Email</label>
+                <p class="p-login">{{login_form.username}}</p>  
+            </li>
+            <li class="lista-login"> 
+                <label class="label-log" for="">Password</label>
+                <p class="p-login">{{login_form.password}} </p>
+            </li>
+            <button name="login">Submit</button>
+        </ul>
+    </form>
+    <br><br><br><br><br><br><br><br><br><br>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>

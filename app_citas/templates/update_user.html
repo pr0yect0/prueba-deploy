@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    {% extends 'navbar.html' %}
+    {% block content %}
+    <ul class="m-usuario">
+        <li class="li-back" aria-current="page">
+            <a class="text-white" href="/usuarios">Back</a>
+        </li>
+    </ul>
+    <h4></h4>
+    <p class="p-update">Edit My Account</p>
+    <div class="reg-form">
+        <form class="form-reg" action="" method="post">
+            
+            {% csrf_token %}
+            <ul class="menu">
+                
+                <li class="menu-lista"><label class="label-reg" for="">First Name</label>
+                    <p class="p-reg">{{update_form.first_name}}</p></li>
+        
+                <li class="menu-lista"><label class="label-reg" for="">Last Name</label>
+                    <p class="p-reg">{{update_form.last_name}}</p></li>
+                    
+                <li class="menu-lista">
+                    <label class="label-reg" for="">Email</label>
+                    <p class="p-reg">{{update_form.username}} </p>
+                </li>
+            </ul>
+            <button class="button-u">Update</button>
+        </form>
+    </div>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endblock %}
+</body>
+</html>

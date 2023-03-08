@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    {% extends 'navbar.html' %}
+    {% block content %}
+    
+    <ul class="m-usuario"> 
+        <li class="li-edit" aria-current="page">
+            <a class="" href="/update_user">Edit My Account</a>
+        </li>
+    </ul>
+    <h4> &nbsp &nbsp Welcome {{nombre.capitalize}} {{apellido.capitalize}}!</h4>
+
+    <div class="caja-cuadrado">
+        <p class="p-q">Quotes</p>
+        {% for citas in citas %}
+        
+        <div class="cuadrado">
+            <p>{{citas.author}} : {{citas.quote}}</p>
+            <p>Posted by <a href="{% url 'perfil' citas.user %}">{{citas.user.first_name.capitalize}} {{citas.user.last_name.capitalize}}</a> </p>
+            {% if citas.user == user %}
+            <form action="{% url 'del_quote' citas.pk %}" method="post">
+                {% csrf_token %}
+                <button>Delete</button>
+            </form>
+            {% endif %}
+        </div>
+        
+    {% endfor %}
+    </div>
+    
+    <div class="caja-quote">
+        <p class="p-quote">Add a Quote!</p>
+        <form class="quote-form" action="" method="post">
+            {% csrf_token %}
+            <label class="label-q" for="">Author</label>
+            {{quote_form.author}} <br><br>
+            <label class="label-q"  for="">Quote</label>
+            {{quote_form.quote}} <br><br>
+            <button class="button-q">Submit</button>
+        </form>
+    </div>
+
+
+    {% endblock %}
+</body>
+</html>
